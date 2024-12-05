@@ -1,29 +1,11 @@
 const express=require("express");
-const fs=require("fs");
+const userController=require("../controllers/user")
+
 
 const router=express.Router();
 
-router.get("/",(req,res,next)=>{
-  fs.readFile('./Chat.txt', (err, data) => {
-    if (err) throw err;
-    console.log(req.body,data);
 
-    res.send(`<p>${data}</p><br>
-      <form action="/" method="POST"><input type="text" name="message"></br><button>submit</button></form>`);
-  });
-  
- 
-})
-
-router.post("/", (req, res, next) => {
- localStorage.setItem
-  fs.appendFile('./Chat.txt',message, (err) => {
-    if (err) throw err;
-    console.log(err);
-  });
-
-  res.redirect("/");
-  
-});
+router.post("/sign-up", userController.AddUser);
+router.post("/login", userController.loginUser);
 
 module.exports=router;
